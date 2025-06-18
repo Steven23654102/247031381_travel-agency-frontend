@@ -1,18 +1,18 @@
+// src/App.tsx
 import React from 'react';
-import './App.css';
-import HotelList from './components/HotelList';
-import HotelbedsList from './components/HotelbedsList';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import Login from './pages/Login';
 
 function App() {
   return (
-    <>
-      <header className="App-header">
-        <h1>飯店列表</h1>
-        <HotelList />
-        <HotelbedsList />
-      </header>
-    </>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Navigate to="/login" />} />
+        <Route path="/login" element={<Login />} />
+      </Routes>
+    </Router>
   );
 }
 
 export default App;
+
