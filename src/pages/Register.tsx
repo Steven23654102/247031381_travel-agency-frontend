@@ -1,41 +1,37 @@
-// src/components/LoginForm.tsx
+// src/pages/Register.tsx
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import './LoginForm.css';
 
-const LoginForm: React.FC = () => {
+const Register: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [signupCode, setSignupCode] = useState(''); 
   const [message, setMessage] = useState('');
   const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const res = await axios.post('http://localhost:3000/api/auth/login', {
+      await axios.post('http://localhost:3000/api/auth/register', {
         email,
         password,
+        signupCode,
       });
-
-      // 儲存 JWT token
-      localStorage.setItem('token', res.data.token);
-      setMessage('登入成功');
-
-      // 1 秒後跳轉至 dashboard
-      setTimeout(() => navigate('/dashboard'), 1000);
+      setMessage('註冊成功，請登入');
+      setTimeout(() => navigate('/login'), 1000);
     } catch (err: any) {
       if (err.response?.data?.error) {
         setMessage(`${err.response.data.error}`);
       } else {
-        setMessage('登入失敗');
+        setMessage('註冊失敗');
       }
     }
   };
 
   return (
     <div className="form-container">
-      <h2>登入</h2>
+      <h2>註冊</h2>
       <form onSubmit={handleSubmit}>
         <input
           type="email"
@@ -49,31 +45,17 @@ const LoginForm: React.FC = () => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button type="submit">登入</button>
+        <input
+          type="text"
+          placeholder="邀請碼（Signup Code）"
+          value={signupCode}
+          onChange={(e) => setSignupCode(e.target.value)}
+        />
+        <button type="submit">註冊</button>
       </form>
-
-      {/* 提示訊息 */}
       {message && <p>{message}</p>}
-
-      {/* 註冊導向按鈕 */}
-      <p>
-        還沒有帳號？&nbsp;
-        <button
-          type="button"
-          onClick={() => navigate('/register')}
-          style={{
-            background: 'none',
-            color: '#007bff',
-            border: 'none',
-            cursor: 'pointer',
-            textDecoration: 'underline',
-          }}
-        >
-          點我註冊
-        </button>
-      </p>
     </div>
   );
 };
 
-export default LoginForm;
+export default Register;
