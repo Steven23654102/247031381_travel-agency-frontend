@@ -13,6 +13,7 @@ import Bookings from './pages/Bookings';
 
 
 
+
 function App() {
   return (
     <Router>
@@ -26,7 +27,7 @@ function App() {
         <Route path="/account" element={<Account />} />
         <Route path="/hotels/:id/booking" element={<Booking />} />
         <Route path="/bookings" element={<Bookings />} />
-
+      
       </Routes>
     </Router>
   );
