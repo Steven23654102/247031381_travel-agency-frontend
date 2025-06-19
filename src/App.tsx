@@ -8,6 +8,8 @@ import AddHotel from './pages/AddHotel';
 import HotelList from './pages/HotelList';
 import Account from './pages/Account';
 import Booking from './pages/Booking';
+import Bookings from './pages/Bookings';
+
 
 
 
@@ -23,6 +25,8 @@ function App() {
         <Route path="/hotels/list" element={<HotelList />} />
         <Route path="/account" element={<Account />} />
         <Route path="/hotels/:id/booking" element={<Booking />} />
+        <Route path="/bookings" element={<Bookings />} />
+
       </Routes>
     </Router>
   );

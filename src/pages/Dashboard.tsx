@@ -77,6 +77,21 @@ const Dashboard: React.FC = () => {
           ➕ 新增飯店
         </button>
 
+<button
+  onClick={() => navigate('/bookings')}
+  style={{
+    backgroundColor: '#28a745',
+    color: 'white',
+    border: 'none',
+    padding: '10px 20px',
+    borderRadius: '8px',
+    cursor: 'pointer',
+    fontWeight: 'bold'
+  }}
+>
+  查看預約記錄
+</button>
+
 
         <button
   onClick={() => navigate('/account')}

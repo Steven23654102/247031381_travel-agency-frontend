@@ -40,9 +40,9 @@ const Booking: React.FC = () => {
         note,
         rating
       });
-      setMessage('✅ 預約成功！');
+      setMessage(' 預約成功！');
     } catch (err) {
-      setMessage('❌ 預約失敗');
+      setMessage(' 預約失敗');
     }
   };
 
