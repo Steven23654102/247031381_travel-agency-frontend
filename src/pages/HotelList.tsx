@@ -1,8 +1,10 @@
 // frontend/src/pages/HotelsList.tsx
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 interface Hotel {
+  _id: string; // ✅ 加這行
   name: string;
   destination: string;
   minRate: number;
@@ -12,6 +14,10 @@ interface Hotel {
 
 const HotelsList: React.FC = () => {
   const [hotels, setHotels] = useState<Hotel[]>([]);
+  const navigate = useNavigate();
+  const handleClick = (id: string) => {
+  navigate(`/hotels/${id}/booking`);
+};
 
   useEffect(() => {
     axios
@@ -26,15 +32,18 @@ const HotelsList: React.FC = () => {
       <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '2rem', marginTop: '2rem' }}>
         {hotels.map((hotel, idx) => (
           <div
-            key={idx}
-            style={{
+            key={hotel._id}
+  onClick={() => handleClick(hotel._id)} // ✅ 點擊後跳轉
+  style={{  
               background: '#fff',
               color: '#000',
               borderRadius: '12px',
               padding: '1.5rem',
               minWidth: '220px',
               maxWidth: '300px',
-              boxShadow: '0 4px 12px rgba(0,0,0,0.1)'
+              boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
+              cursor: 'pointer' // ✅ 加上滑鼠變化提示
+
             }}
           >
             <strong style={{ color: '#007bff' }}>{hotel.name}</strong>
