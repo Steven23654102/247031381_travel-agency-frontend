@@ -6,6 +6,7 @@ import Dashboard from './pages/Dashboard';
 import Register from './pages/Register';
 import AddHotel from './pages/AddHotel';
 import HotelList from './pages/HotelList';
+import Account from './pages/Account';
 
 
 function App() {
@@ -17,7 +18,8 @@ function App() {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/register" element={<Register />} />
         <Route path="/hotels/new" element={<AddHotel />} />
-          <Route path="/hotels/list" element={<HotelList />} />
+        <Route path="/hotels/list" element={<HotelList />} />
+        <Route path="/account" element={<Account />} />
 
       </Routes>
     </Router>

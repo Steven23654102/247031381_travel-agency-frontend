@@ -38,6 +38,7 @@ const LoginForm: React.FC = () => {
       /*  儲存憑證到 localStorage */
       localStorage.setItem('token', token);
       localStorage.setItem('role',  role);
+      localStorage.setItem('email', email);
 
       /*  為 axios 設定預設的 Authorization header */
       axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
