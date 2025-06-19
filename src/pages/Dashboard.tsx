@@ -14,6 +14,7 @@ interface Hotel {
 const Dashboard: React.FC = () => {
   const [hotels, setHotels] = useState<Hotel[]>([]);
   const [loading, setLoading] = useState(true);
+  const [search, setSearch] = useState('');
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -114,11 +115,32 @@ const Dashboard: React.FC = () => {
           👤 帳號設定
         </button>
       </div>
+<div style={{ marginBottom: '1rem' }}>
+  <input
+    type="text"
+    placeholder="搜尋名稱、類型、城市代碼"
+    value={search}
+    onChange={(e) => setSearch(e.target.value)}
+    style={{
+      padding: '8px 12px',
+      borderRadius: '8px',
+      border: '1px solid #ccc',
+      width: '300px'
+    }}
+  />
+</div>
 
       <p>以下為推薦飯店清單：</p>
 
       <div className="hotel-container">
-        {hotels.map((hotel, idx) => (
+        {hotels
+  .filter(hotel =>
+    hotel.name.toLowerCase().includes(search.toLowerCase()) ||
+    hotel.category.toLowerCase().includes(search.toLowerCase()) ||
+    hotel.destination.toLowerCase().includes(search.toLowerCase())
+  )
+  .map((hotel, idx) => (
+
           <div className="hotel-card" key={idx}>
             <strong>{hotel.name}</strong>
             <p>類型：{hotel.category}</p>
