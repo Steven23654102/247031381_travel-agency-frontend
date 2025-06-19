@@ -15,6 +15,11 @@ const Dashboard: React.FC = () => {
   const [hotels, setHotels] = useState<Hotel[]>([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState('');
+
+  const [categoryFilter, setCategoryFilter] = useState('');
+const [destinationFilter, setDestinationFilter] = useState('');
+const [maxPrice, setMaxPrice] = useState<number | ''>('');
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -116,6 +121,31 @@ const Dashboard: React.FC = () => {
         </button>
       </div>
 <div style={{ marginBottom: '1rem' }}>
+  <div style={{ marginBottom: '1rem', display: 'flex', justifyContent: 'center', gap: '1rem' }}>
+  <select value={categoryFilter} onChange={(e) => setCategoryFilter(e.target.value)}>
+    <option value="">所有類型</option>
+    <option value="3EST">3EST</option>
+    <option value="4EST">4EST</option>
+    <option value="SUP">SUP</option>
+    {/* 你可根據實際資料補上其他類型 */}
+  </select>
+
+  <select value={destinationFilter} onChange={(e) => setDestinationFilter(e.target.value)}>
+    <option value="">所有城市</option>
+    <option value="LPA">LPA</option>
+    <option value="SAL">SAL</option>
+    <option value="LLM">LLM</option>
+  </select>
+
+  <input
+    type="number"
+    placeholder="最高價格"
+    value={maxPrice}
+    onChange={(e) => setMaxPrice(e.target.value === '' ? '' : Number(e.target.value))}
+    style={{ width: '120px' }}
+  />
+</div>
+
   <input
     type="text"
     placeholder="搜尋名稱、類型、城市代碼"
@@ -135,10 +165,17 @@ const Dashboard: React.FC = () => {
       <div className="hotel-container">
         {hotels
   .filter(hotel =>
-    hotel.name.toLowerCase().includes(search.toLowerCase()) ||
-    hotel.category.toLowerCase().includes(search.toLowerCase()) ||
-    hotel.destination.toLowerCase().includes(search.toLowerCase())
+    (hotel.name.toLowerCase().includes(search.toLowerCase()) ||
+     hotel.category.toLowerCase().includes(search.toLowerCase()) ||
+     hotel.destination.toLowerCase().includes(search.toLowerCase()))
+    &&
+    (!categoryFilter || hotel.category === categoryFilter)
+    &&
+    (!destinationFilter || hotel.destination === destinationFilter)
+    &&
+    (maxPrice === '' || hotel.minRate <= maxPrice)
   )
+
   .map((hotel, idx) => (
 
           <div className="hotel-card" key={idx}>
