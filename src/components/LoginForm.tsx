@@ -1,62 +1,89 @@
-// src/components/LoginForm.tsx
+/**
+ * src/components/LoginForm.tsx
+ * ----------------------------
+ * - 旅遊社職員登入表單
+ * - 登入成功流程：
+ *     1. 儲存 JWT 與 role ➜ localStorage
+ *     2. 全域設定 axios Authorization Header
+ *     3. 顯示成功訊息後導向 /dashboard
+ */
+
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import './LoginForm.css';
 
 const LoginForm: React.FC = () => {
-  const [email, setEmail] = useState('');
+  /* ---------- state ---------- */
+  const [email, setEmail]       = useState('');
   const [password, setPassword] = useState('');
-  const [message, setMessage] = useState('');
+  const [msg, setMsg]           = useState('');
+  const [loading, setLoading]   = useState(false);
   const navigate = useNavigate();
 
+  /* ---------- handler ---------- */
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setLoading(true);
+    setMsg('');
+
     try {
       const res = await axios.post('http://localhost:3000/api/auth/login', {
         email,
-        password,
+        password
       });
 
-      // 儲存 JWT token
-      localStorage.setItem('token', res.data.token);
-      setMessage('登入成功');
+      const { token, role } = res.data;
 
-      // 1 秒後跳轉至 dashboard
-      setTimeout(() => navigate('/dashboard'), 1000);
+      /*  儲存憑證到 localStorage */
+      localStorage.setItem('token', token);
+      localStorage.setItem('role',  role);
+
+      /*  為 axios 設定預設的 Authorization header */
+      axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+
+      /*  提示並導頁 */
+      setMsg(' 登入成功，前往控制台…');
+      setTimeout(() => navigate('/dashboard'), 800);
     } catch (err: any) {
-      if (err.response?.data?.error) {
-        setMessage(`${err.response.data.error}`);
-      } else {
-        setMessage('登入失敗');
-      }
+      const errMsg = err.response?.data?.error || '登入失敗';
+      setMsg(` ${errMsg}`);
+    } finally {
+      setLoading(false);
     }
   };
 
+  /* ---------- jsx ---------- */
   return (
     <div className="form-container">
       <h2>登入</h2>
+
       <form onSubmit={handleSubmit}>
         <input
           type="email"
           placeholder="電子郵件"
           value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={e => setEmail(e.target.value)}
+          required
         />
+
         <input
           type="password"
           placeholder="密碼"
           value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          onChange={e => setPassword(e.target.value)}
+          required
         />
-        <button type="submit">登入</button>
+
+        <button type="submit" disabled={loading}>
+          {loading ? '登入中…' : '登入'}
+        </button>
       </form>
 
-      {/* 提示訊息 */}
-      {message && <p>{message}</p>}
+      {msg && <p>{msg}</p>}
 
-      {/* 註冊導向按鈕 */}
-      <p>
+      {/* 前往註冊 */}
+      <p style={{ marginTop: '1rem' }}>
         還沒有帳號？&nbsp;
         <button
           type="button"
@@ -66,7 +93,7 @@ const LoginForm: React.FC = () => {
             color: '#007bff',
             border: 'none',
             cursor: 'pointer',
-            textDecoration: 'underline',
+            textDecoration: 'underline'
           }}
         >
           點我註冊

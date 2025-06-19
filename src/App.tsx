@@ -4,6 +4,9 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
 import Register from './pages/Register';
+import AddHotel from './pages/AddHotel';
+import HotelList from './pages/HotelList';
+
 
 function App() {
   return (
@@ -13,6 +16,9 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/hotels/new" element={<AddHotel />} />
+          <Route path="/hotels/list" element={<HotelList />} />
+
       </Routes>
     </Router>
   );
