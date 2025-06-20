@@ -14,7 +14,7 @@ import Flights from './pages/Flights';
 import AdminLogin from './pages/AdminLogin';
 import AdminDashboard from './pages/AdminDashboard';
 import AdminRegister from './pages/AdminRegister';
-
+import AdminBookings from './pages/AdminBookings';
 
 
 
@@ -36,7 +36,7 @@ function App() {
     <Route path="/admin/login" element={<AdminLogin />} />
   <Route path="/admin/dashboard" element={<AdminDashboard />} />
   <Route path="/admin/register" element={<AdminRegister />} />
-
+<Route path="/admin/bookings" element={<AdminBookings />} />
       </Routes>
     </Router>
   );

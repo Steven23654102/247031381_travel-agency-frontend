@@ -22,38 +22,49 @@ const [maxPrice, setMaxPrice] = useState<number | ''>('');
 
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const fetchHotels = async () => {
-      try {
-        const token = localStorage.getItem('token');
-        const { data } = await axios.get(
-          'http://localhost:3000/api/hotels/hotelbeds?city=PAR',
-          {
-            headers: token ? { Authorization: `Bearer ${token}` } : undefined
+useEffect(() => {
+  const token = localStorage.getItem('token');
+
+  //  如果沒登入，跳轉回 login 頁面
+  if (!token) {
+    navigate('/login');
+    return;
+  }
+
+  //  如果有 token 才嘗試抓資料
+  const fetchHotels = async () => {
+    try {
+      const { data } = await axios.get(
+        'http://localhost:3000/api/hotels/hotelbeds?city=PAR',
+        {
+          headers: {
+            Authorization: `Bearer ${token}` // 帶上登入憑證
           }
-        );
+        }
+      );
 
-        const raw: any[] = Array.isArray(data.hotels)
-          ? data.hotels
-          : Object.values(data.hotels ?? {});
+      const raw: any[] = Array.isArray(data.hotels)
+        ? data.hotels
+        : Object.values(data.hotels ?? {});
 
-        const mapped: Hotel[] = raw.slice(0, 20).map((h) => ({
-          name: h.name ?? h.name?.content ?? '無名稱',
-          category: h.category ?? h.categoryCode ?? '無分類',
-          destination: h.destination ?? h.city ?? h.city?.content ?? '未知',
-          minRate: h.minRate ?? 1000
-        }));
+      const mapped: Hotel[] = raw.slice(0, 20).map((h) => ({
+        name: h.name ?? h.name?.content ?? '無名稱',
+        category: h.category ?? h.categoryCode ?? '無分類',
+        destination: h.destination ?? h.city ?? h.city?.content ?? '未知',
+        minRate: h.minRate ?? 1000
+      }));
 
-        setHotels(mapped);
-      } catch (err) {
-        console.error('取得 hotelbeds 資料失敗：', err);
-      } finally {
-        setLoading(false);
-      }
-    };
+      setHotels(mapped);
+    } catch (err) {
+      console.error('取得 hotelbeds 資料失敗：', err);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-    fetchHotels();
-  }, []);
+  fetchHotels();
+}, [navigate]);
+
 
   if (loading) return <p style={{ textAlign: 'center', color: '#fff' }}>載入中…</p>;
 
@@ -90,7 +101,7 @@ const [maxPrice, setMaxPrice] = useState<number | ''>('');
           酒店清單
         </button>
 
-        <button
+        {/* <button
           onClick={() => navigate('/hotels/new')}
           style={{
             backgroundColor: '#1890ff',
@@ -103,7 +114,7 @@ const [maxPrice, setMaxPrice] = useState<number | ''>('');
           }}
         >
           ➕ 新增飯店
-        </button>
+        </button> */}
 
         <button
           onClick={() => navigate('/bookings')}

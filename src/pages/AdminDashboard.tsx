@@ -31,6 +31,68 @@ const AdminDashboard: React.FC = () => {
       {profile ? (
         <>
           <p>歡迎你, {profile.email}</p>
+<button
+  onClick={() => navigate('/hotels/new')}
+  style={{
+    backgroundColor: '#1890ff',
+    color: 'white',
+    border: 'none',
+    padding: '10px 20px',
+    borderRadius: '8px',
+    cursor: 'pointer',
+    fontWeight: 'bold'
+  }}
+>
+  ➕ 新增飯店
+</button>
+
+
+        <button
+          onClick={() => navigate('/hotels/list')}
+          style={{
+            backgroundColor: '#888',
+            color: 'white',
+            border: 'none',
+            padding: '10px 20px',
+            borderRadius: '8px',
+            cursor: 'pointer',
+            fontWeight: 'bold'
+          }}
+        >
+          酒店清單
+        </button>
+
+<button
+  onClick={() => navigate('/flights')}
+  style={{
+    backgroundColor: '#17a2b8',
+    color: 'white',
+    border: 'none',
+    padding: '10px 20px',
+    borderRadius: '8px',
+    cursor: 'pointer',
+    fontWeight: 'bold'
+  }}
+>
+  ✈️ 航班查詢
+</button>
+
+<button
+  onClick={() => navigate('/admin/bookings')}
+  style={{
+    backgroundColor: '#28a745',
+    color: 'white',
+    padding: '8px 12px',
+    marginTop: '1rem',
+    border: 'none',
+    borderRadius: '4px',
+    cursor: 'pointer'
+  }}
+>
+  查看所有預約
+</button>
+
+
           <button
             onClick={() => {
               localStorage.removeItem('adminToken');
