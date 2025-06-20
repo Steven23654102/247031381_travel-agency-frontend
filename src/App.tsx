@@ -11,7 +11,8 @@ import Booking from './pages/Booking';
 import Bookings from './pages/Bookings';
 import Favorites from './pages/Favorites';
 import Flights from './pages/Flights';
-
+import AdminLogin from './pages/AdminLogin';
+import AdminDashboard from './pages/AdminDashboard';
 
 
 
@@ -31,6 +32,8 @@ function App() {
         <Route path="/bookings" element={<Bookings />} />
         <Route path="/favorites" element={<Favorites />} />
   <Route path="/flights" element={<Flights />} />
+    <Route path="/admin/login" element={<AdminLogin />} />
+  <Route path="/admin/dashboard" element={<AdminDashboard />} />
       </Routes>
     </Router>
   );
