@@ -13,6 +13,7 @@ import Favorites from './pages/Favorites';
 import Flights from './pages/Flights';
 import AdminLogin from './pages/AdminLogin';
 import AdminDashboard from './pages/AdminDashboard';
+import AdminRegister from './pages/AdminRegister';
 
 
 
@@ -34,6 +35,8 @@ function App() {
   <Route path="/flights" element={<Flights />} />
     <Route path="/admin/login" element={<AdminLogin />} />
   <Route path="/admin/dashboard" element={<AdminDashboard />} />
+  <Route path="/admin/register" element={<AdminRegister />} />
+
       </Routes>
     </Router>
   );
