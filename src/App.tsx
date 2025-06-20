@@ -10,6 +10,7 @@ import Account from './pages/Account';
 import Booking from './pages/Booking';
 import Bookings from './pages/Bookings';
 import Favorites from './pages/Favorites';
+import Flights from './pages/Flights';
 
 
 
@@ -29,7 +30,7 @@ function App() {
         <Route path="/hotels/:id/booking" element={<Booking />} />
         <Route path="/bookings" element={<Bookings />} />
         <Route path="/favorites" element={<Favorites />} />
-
+  <Route path="/flights" element={<Flights />} />
       </Routes>
     </Router>
   );

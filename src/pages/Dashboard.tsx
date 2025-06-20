@@ -61,6 +61,21 @@ const [maxPrice, setMaxPrice] = useState<number | ''>('');
     <div style={{ padding: '2rem', color: 'white', textAlign: 'center' }}>
       <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', marginBottom: '1rem' }}>
         <button
+  onClick={() => navigate('/flights')}
+  style={{
+    backgroundColor: '#17a2b8',
+    color: 'white',
+    border: 'none',
+    padding: '10px 20px',
+    borderRadius: '8px',
+    cursor: 'pointer',
+    fontWeight: 'bold'
+  }}
+>
+  ✈️ 航班查詢
+</button>
+
+        <button
           onClick={() => navigate('/hotels/list')}
           style={{
             backgroundColor: '#888',
