@@ -57,7 +57,7 @@ const LoginForm: React.FC = () => {
   /* ---------- jsx ---------- */
   return (
     <div className="form-container">
-      <h2>登入</h2>
+      <h2>用戶登入</h2>
 
       <form onSubmit={handleSubmit}>
         <input
@@ -80,6 +80,10 @@ const LoginForm: React.FC = () => {
           {loading ? '登入中…' : '登入'}
         </button>
       </form>
+      
+<a href="http://localhost:3000/api/auth/google">
+  <button className="google-btn">使用 Google 登入</button>
+</a>
 
       {msg && <p>{msg}</p>}
 

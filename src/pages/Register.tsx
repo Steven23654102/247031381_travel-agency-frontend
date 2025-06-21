@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import './Register.css';
 
 const Register: React.FC = () => {
   const [email, setEmail] = useState('');
@@ -29,8 +30,9 @@ const Register: React.FC = () => {
     }
   };
 
-  return (
-    <div className="form-container">
+return (
+  <div className="auth-wrapper">
+    <div className="auth-box">
       <h2>註冊</h2>
       <form onSubmit={handleSubmit}>
         <input
@@ -53,9 +55,11 @@ const Register: React.FC = () => {
         />
         <button type="submit">註冊</button>
       </form>
-      {message && <p>{message}</p>}
+      {message && <p className="message">{message}</p>}
     </div>
-  );
+  </div>
+);
+
 };
 
 export default Register;
