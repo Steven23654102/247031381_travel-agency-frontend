@@ -40,8 +40,8 @@ const Account: React.FC = () => {
         </button>
       </div>
 
-      <h2 style={{ fontSize: '2rem', marginBottom: '1rem' }}>帳號設定</h2>
-      <p>這裡可以顯示帳號資訊、修改密碼等等。</p>
+      <h2 style={{ fontSize: '2rem', marginBottom: '1rem' }}>帳號</h2>
+      
 
 
     </div>

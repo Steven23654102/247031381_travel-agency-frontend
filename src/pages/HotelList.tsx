@@ -29,7 +29,24 @@ const HotelsList: React.FC = () => {
 
   return (
     <div style={{ padding: '2rem', color: 'white', textAlign: 'center' }}>
-      <h2>酒店清單（來自 MongoDB）</h2><button onClick={() => navigate('/favorites')}> 我的收藏</button>
+      <h2>酒店清單</h2>
+      
+      <button
+  onClick={() => navigate('/favorites')}
+  style={{
+    backgroundColor: '#00bcd4',
+    color: '#fff',
+    border: 'none',
+    padding: '10px 20px',
+    borderRadius: '8px',
+    cursor: 'pointer',
+    fontWeight: 'bold',
+    marginTop: '1rem',
+  }}
+>
+   我的收藏
+</button>
+
 
       <div
         style={{
@@ -64,15 +81,21 @@ const HotelsList: React.FC = () => {
 
             {/*  收藏按鈕 */}
             <button
-              style={{
-                marginTop: '10px',
-                padding: '5px 10px',
-                backgroundColor: '#ffc107',
-                border: 'none',
-                borderRadius: '4px',
-                cursor: 'pointer',
-                fontWeight: 'bold',
-              }}
+  style={{
+    marginTop: '1rem',
+    padding: '8px 14px',
+    backgroundColor: '#ffc107',
+    color: '#000',
+    border: 'none',
+    borderRadius: '6px',
+    cursor: 'pointer',
+    fontWeight: 'bold',
+    boxShadow: '0 2px 6px rgba(0,0,0,0.2)',
+    transition: 'background-color 0.2s ease',
+  }}
+  onMouseOver={(e) => (e.currentTarget.style.backgroundColor = '#ffca2c')}
+  onMouseOut={(e) => (e.currentTarget.style.backgroundColor = '#ffc107')}
+
               onClick={async (e) => {
                 e.stopPropagation(); // 防止點擊跳轉
                 try {

@@ -25,18 +25,83 @@ const AdminLogin: React.FC = () => {
   };
 
   return (
-    <div>
-      <h2>Admin 登入</h2>
-      <form onSubmit={handleLogin}>
-        <input value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" />
-        <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="密碼" />
-        <button type="submit">登入</button>
-      </form>
-      <p>{message}</p>
-      {/* ✅ 加在這裡 */}
-    <p>
-      還沒有帳號？ <a href="/admin/register">點我註冊</a>
-    </p>
+    <div
+      style={{
+        backgroundColor: '#1e1e1e',
+        minHeight: '100vh',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        padding: '2rem'
+      }}
+    >
+      <div
+        style={{
+          backgroundColor: '#fff',
+          padding: '2rem',
+          borderRadius: '16px',
+          width: '100%',
+          maxWidth: '400px',
+          boxShadow: '0 8px 24px rgba(0, 0, 0, 0.2)',
+          textAlign: 'center'
+        }}
+      >
+        <h2 style={{ marginBottom: '1.5rem', color: '#000', fontWeight: 'bold' }}>Admin 登入</h2>
+
+        <form onSubmit={handleLogin}>
+          <input
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="電子郵件"
+            style={{
+              width: '100%',
+              padding: '10px',
+              marginBottom: '1rem',
+              borderRadius: '6px',
+              border: '1px solid #ccc'
+            }}
+          />
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="密碼"
+            style={{
+              width: '100%',
+              padding: '10px',
+              marginBottom: '1.5rem',
+              borderRadius: '6px',
+              border: '1px solid #ccc'
+            }}
+          />
+
+          <button
+            type="submit"
+            style={{
+              width: '100%',
+              padding: '10px',
+              backgroundColor: '#007bff',
+              color: '#fff',
+              border: 'none',
+              borderRadius: '6px',
+              fontWeight: 'bold',
+              cursor: 'pointer',
+              marginBottom: '1rem'
+            }}
+          >
+            登入
+          </button>
+        </form>
+
+        {message && <p style={{ color: 'red', marginBottom: '1rem' }}>{message}</p>}
+
+        <p style={{ fontSize: '0.9rem', color: '#333' }}>
+          還沒有帳號？{' '}
+          <a href="/admin/register" style={{ color: '#007bff', textDecoration: 'none' }}>
+            點我註冊
+          </a>
+        </p>
+      </div>
     </div>
   );
 };

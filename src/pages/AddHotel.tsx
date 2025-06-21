@@ -46,7 +46,7 @@ const AddHotel: React.FC = () => {
       <form onSubmit={handleSubmit} style={{ maxWidth: 400, margin: 'auto' }}>
         <input
           type="text"
-          placeholder="飯店名稱"
+          placeholder="酒店名稱"
           value={name}
           onChange={(e) => setName(e.target.value)}
           required
@@ -100,7 +100,7 @@ const AddHotel: React.FC = () => {
             fontWeight: 'bold'
           }}
         >
-          📤 新增飯店
+           新增酒店
         </button>
         <p>{message}</p>
       </form>

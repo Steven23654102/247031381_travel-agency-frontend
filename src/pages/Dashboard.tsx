@@ -83,7 +83,7 @@ useEffect(() => {
     fontWeight: 'bold'
   }}
 >
-  ✈️ 航班查詢
+   航班查詢
 </button>
 
         <button
@@ -113,7 +113,7 @@ useEffect(() => {
             fontWeight: 'bold'
           }}
         >
-          ➕ 新增飯店
+           新增飯店
         </button> */}
 
         <button
@@ -143,34 +143,68 @@ useEffect(() => {
             fontWeight: 'bold'
           }}
         >
-          👤 帳號設定
+           帳號設定
         </button>
       </div>
-<div style={{ marginBottom: '1rem' }}>
-  <div style={{ marginBottom: '1rem', display: 'flex', justifyContent: 'center', gap: '1rem' }}>
-  <select value={categoryFilter} onChange={(e) => setCategoryFilter(e.target.value)}>
-    <option value="">所有類型</option>
-    <option value="3EST">3EST</option>
-    <option value="4EST">4EST</option>
-    <option value="SUP">SUP</option>
-    {/* 你可根據實際資料補上其他類型 */}
-  </select>
+<div style={{ marginBottom: '1.5rem' }}>
+  <div
+    style={{
+      display: 'flex',
+      justifyContent: 'center',
+      gap: '1rem',
+      flexWrap: 'wrap',
+      marginBottom: '1rem',
+    }}
+  >
+    <select
+      value={categoryFilter}
+      onChange={(e) => setCategoryFilter(e.target.value)}
+      style={{
+        padding: '0.5rem',
+        borderRadius: '6px',
+        backgroundColor: '#2c2c2c',
+        color: 'white',
+        border: '1px solid #666',
+      }}
+    >
+      <option value="">所有類型</option>
+      <option value="3EST">3EST</option>
+      <option value="4EST">4EST</option>
+      <option value="SUP">SUP</option>
+    </select>
 
-  <select value={destinationFilter} onChange={(e) => setDestinationFilter(e.target.value)}>
-    <option value="">所有城市</option>
-    <option value="LPA">LPA</option>
-    <option value="SAL">SAL</option>
-    <option value="LLM">LLM</option>
-  </select>
+    <select
+      value={destinationFilter}
+      onChange={(e) => setDestinationFilter(e.target.value)}
+      style={{
+        padding: '0.5rem',
+        borderRadius: '6px',
+        backgroundColor: '#2c2c2c',
+        color: 'white',
+        border: '1px solid #666',
+      }}
+    >
+      <option value="">所有城市</option>
+      <option value="LPA">LPA</option>
+      <option value="SAL">SAL</option>
+      <option value="LLM">LLM</option>
+    </select>
 
-  <input
-    type="number"
-    placeholder="最高價格"
-    value={maxPrice}
-    onChange={(e) => setMaxPrice(e.target.value === '' ? '' : Number(e.target.value))}
-    style={{ width: '120px' }}
-  />
-</div>
+    <input
+      type="number"
+      placeholder="最高價格"
+      value={maxPrice}
+      onChange={(e) => setMaxPrice(e.target.value === '' ? '' : Number(e.target.value))}
+      style={{
+        padding: '0.5rem',
+        borderRadius: '6px',
+        width: '140px',
+        backgroundColor: '#2c2c2c',
+        color: 'white',
+        border: '1px solid #666',
+      }}
+    />
+  </div>
 
   <input
     type="text"
@@ -178,15 +212,18 @@ useEffect(() => {
     value={search}
     onChange={(e) => setSearch(e.target.value)}
     style={{
-      padding: '8px 12px',
+      padding: '0.5rem 1rem',
       borderRadius: '8px',
-      border: '1px solid #ccc',
-      width: '300px'
+      border: '1px solid #666',
+      width: '320px',
+      backgroundColor: '#2c2c2c',
+      color: 'white',
     }}
   />
 </div>
 
-      <p>以下為推薦飯店清單：</p>
+
+      <p>以下為推薦酒店清單：</p>
 
       <div className="hotel-container">
         {hotels
@@ -207,7 +244,7 @@ useEffect(() => {
           <div className="hotel-card" key={idx}>
             <strong>{hotel.name}</strong>
             <p>類型：{hotel.category}</p>
-            <p>城市代碼：{hotel.destination}</p>
+            <p>城市：{hotel.destination}</p>
             <p>價格：${hotel.minRate}</p>
           </div>
         ))}

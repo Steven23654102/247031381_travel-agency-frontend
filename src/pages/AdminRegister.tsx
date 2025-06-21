@@ -1,3 +1,4 @@
+//AdminRegister.tsx
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -24,18 +25,99 @@ const AdminRegister: React.FC = () => {
     }
   };
 
-  return (
-    <div>
-      <h2>Admin 註冊</h2>
+return (
+  <div
+    style={{
+      backgroundColor: '#1e1e1e',
+      minHeight: '100vh',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      padding: '2rem'
+    }}
+  >
+    <div
+      style={{
+        backgroundColor: '#fff',
+        padding: '2rem',
+        borderRadius: '16px',
+        width: '100%',
+        maxWidth: '400px',
+        boxShadow: '0 8px 24px rgba(0, 0, 0, 0.2)',
+        textAlign: 'center'
+      }}
+    >
+      <h2 style={{ marginBottom: '1.5rem', color: '#000' }}>Admin 註冊</h2>
+
       <form onSubmit={handleRegister}>
-        <input value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" />
-        <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="密碼" />
-        <input value={code} onChange={(e) => setCode(e.target.value)} placeholder="註冊碼" />
-        <button type="submit">註冊</button>
+        <input
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="電子郵件"
+          style={{
+            width: '100%',
+            padding: '10px',
+            marginBottom: '1rem',
+            borderRadius: '6px',
+            border: '1px solid #ccc'
+          }}
+        />
+        <input
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          placeholder="密碼"
+          style={{
+            width: '100%',
+            padding: '10px',
+            marginBottom: '1rem',
+            borderRadius: '6px',
+            border: '1px solid #ccc'
+          }}
+        />
+        <input
+          value={code}
+          onChange={(e) => setCode(e.target.value)}
+          placeholder="註冊碼"
+          style={{
+            width: '100%',
+            padding: '10px',
+            marginBottom: '1.5rem',
+            borderRadius: '6px',
+            border: '1px solid #ccc'
+          }}
+        />
+
+        <button
+          type="submit"
+          style={{
+            width: '100%',
+            padding: '10px',
+            backgroundColor: '#007bff',
+            color: '#fff',
+            border: 'none',
+            borderRadius: '6px',
+            fontWeight: 'bold',
+            cursor: 'pointer',
+            marginBottom: '1rem'
+          }}
+        >
+          註冊
+        </button>
       </form>
-      <p>{message}</p>
+
+      {message && <p style={{ color: 'red', marginBottom: '1rem' }}>{message}</p>}
+
+      <p style={{ fontSize: '0.9rem', color: '#333' }}>
+        已經有帳號？{' '}
+        <a href="/admin/login" style={{ color: '#007bff', textDecoration: 'none' }}>
+          返回登入
+        </a>
+      </p>
     </div>
-  );
+  </div>
+);
+
 };
 
 export default AdminRegister;

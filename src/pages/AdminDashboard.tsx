@@ -25,96 +25,123 @@ const AdminDashboard: React.FC = () => {
     fetchProfile();
   }, []);
 
-  return (
-    <div>
-      <h2>Admin Dashboard</h2>
+return (
+  <div
+    style={{
+      backgroundColor: '#1e1e1e',
+      minHeight: '100vh',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      padding: '2rem'
+    }}
+  >
+    <div
+      style={{
+        backgroundColor: '#fff',
+        padding: '2rem',
+        borderRadius: '16px',
+        width: '100%',
+        maxWidth: '600px',
+        boxShadow: '0 8px 24px rgba(0, 0, 0, 0.2)',
+        textAlign: 'center'
+      }}
+    >
+      <h2 style={{ marginBottom: '1rem', color: '#000' }}>Admin Dashboard</h2>
+
       {profile ? (
         <>
-          <p>歡迎你, {profile.email}</p>
-<button
-  onClick={() => navigate('/hotels/new')}
-  style={{
-    backgroundColor: '#1890ff',
-    color: 'white',
-    border: 'none',
-    padding: '10px 20px',
-    borderRadius: '8px',
-    cursor: 'pointer',
-    fontWeight: 'bold'
-  }}
->
-  ➕ 新增飯店
-</button>
+          <p style={{ marginBottom: '1.5rem', fontWeight: 'bold', color: '#333' }}>
+            歡迎你, {profile.email}
+          </p>
 
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', justifyContent: 'center' }}>
+            <button
+              onClick={() => navigate('/hotels/new')}
+              style={{
+                backgroundColor: '#1890ff',
+                color: 'white',
+                border: 'none',
+                padding: '10px 20px',
+                borderRadius: '8px',
+                fontWeight: 'bold',
+                cursor: 'pointer'
+              }}
+            >
+              新增飯店
+            </button>
 
-        <button
-          onClick={() => navigate('/hotels/list')}
-          style={{
-            backgroundColor: '#888',
-            color: 'white',
-            border: 'none',
-            padding: '10px 20px',
-            borderRadius: '8px',
-            cursor: 'pointer',
-            fontWeight: 'bold'
-          }}
-        >
-          酒店清單
-        </button>
+            <button
+              onClick={() => navigate('/hotels/list')}
+              style={{
+                backgroundColor: '#888',
+                color: 'white',
+                border: 'none',
+                padding: '10px 20px',
+                borderRadius: '8px',
+                fontWeight: 'bold',
+                cursor: 'pointer'
+              }}
+            >
+              酒店清單
+            </button>
 
-<button
-  onClick={() => navigate('/flights')}
-  style={{
-    backgroundColor: '#17a2b8',
-    color: 'white',
-    border: 'none',
-    padding: '10px 20px',
-    borderRadius: '8px',
-    cursor: 'pointer',
-    fontWeight: 'bold'
-  }}
->
-  ✈️ 航班查詢
-</button>
+            <button
+              onClick={() => navigate('/flights')}
+              style={{
+                backgroundColor: '#17a2b8',
+                color: 'white',
+                border: 'none',
+                padding: '10px 20px',
+                borderRadius: '8px',
+                fontWeight: 'bold',
+                cursor: 'pointer'
+              }}
+            >
+              航班查詢
+            </button>
 
-<button
-  onClick={() => navigate('/admin/bookings')}
-  style={{
-    backgroundColor: '#28a745',
-    color: 'white',
-    padding: '8px 12px',
-    marginTop: '1rem',
-    border: 'none',
-    borderRadius: '4px',
-    cursor: 'pointer'
-  }}
->
-  查看所有預約
-</button>
+            <button
+              onClick={() => navigate('/admin/bookings')}
+              style={{
+                backgroundColor: '#28a745',
+                color: 'white',
+                border: 'none',
+                padding: '10px 20px',
+                borderRadius: '8px',
+                fontWeight: 'bold',
+                cursor: 'pointer'
+              }}
+            >
+              預約紀錄
+            </button>
 
-
-          <button
-            onClick={() => {
-              localStorage.removeItem('adminToken');
-              navigate('/admin/login');
-            }}
-            style={{
-              backgroundColor: 'red',
-              color: 'white',
-              padding: '8px 12px',
-              border: 'none',
-              borderRadius: '4px',
-              cursor: 'pointer'
-            }}
-          >
-            登出
-          </button>
+            <button
+              onClick={() => {
+                localStorage.removeItem('adminToken');
+                navigate('/admin/login');
+              }}
+              style={{
+                backgroundColor: '#dc3545',
+                color: 'white',
+                border: 'none',
+                padding: '10px 20px',
+                borderRadius: '8px',
+                fontWeight: 'bold',
+                cursor: 'pointer'
+              }}
+            >
+              登出
+            </button>
+          </div>
         </>
       ) : (
         <p>載入中...</p>
       )}
     </div>
-  );
+  </div>
+);
+
 };
 
 export default AdminDashboard;

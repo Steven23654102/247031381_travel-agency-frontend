@@ -14,8 +14,9 @@ import Flights from './pages/Flights';
 import AdminLogin from './pages/AdminLogin';
 import AdminDashboard from './pages/AdminDashboard';
 import AdminRegister from './pages/AdminRegister';
-import AdminBookings from './pages/AdminBookings';
 import LoginSuccess from './pages/LoginSuccess';
+import AdminBookings from './pages/AdminBookings';
+import EditBooking from './pages/EditBooking';
 
 
 
@@ -37,8 +38,9 @@ function App() {
     <Route path="/admin/login" element={<AdminLogin />} />
   <Route path="/admin/dashboard" element={<AdminDashboard />} />
   <Route path="/admin/register" element={<AdminRegister />} />
-<Route path="/admin/bookings" element={<AdminBookings />} />
   <Route path="/login-success" element={<LoginSuccess />} />
+<Route path="/admin/bookings" element={<AdminBookings />} />
+  <Route path="/admin/bookings/:id/edit" element={<EditBooking />} />
 
       </Routes>
     </Router>

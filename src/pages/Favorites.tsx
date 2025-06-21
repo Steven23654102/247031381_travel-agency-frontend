@@ -50,7 +50,7 @@ const handleRemove = async (favId: string) => {
         cursor: 'pointer'
       }}
     >
-      ❌ 取消收藏
+       取消收藏
     </button>
   </div>
 ))}
